@@ -1,5 +1,9 @@
 const fastify=require('fastify')({logger:true})
 const userRouter=require("./routes/router")
+
+fastify.register(require('@fastify/jwt'), {
+  secret: "supersecretkey"
+});
 fastify.register(require("./plugins/db"));
 fastify.register(userRouter);
 fastify.get("/",async(request,reply)=>{

@@ -1,11 +1,14 @@
 const userController=require("../controllers/controller");
+const authenticate=require("../middleware/authenticate");
 async function userRoutes(fastify,options){
-    fastify.get('/users',userController.getUsers);
-    fastify.get('/users/:id',userController.getUserById);
-    fastify.post('/users',userController.createUser);
-    fastify.put('/users/:id',userController.updateUser);
-    fastify.patch('/users/:id',userController.updateUser);
-    fastify.delete('/users/:id',userController.deleteUser);
+    fastify.get('/users',{preHandler:[authenticate]},userController.getUsers);
+    fastify.get('/users/:id',{preHandler:[authenticate]},userController.getUserById);
+    fastify.post('/users',{preHandler:[authenticate]},userController.createUser);
+    fastify.post('/register',userController.register);
+    fastify.post('/login',userController.login);
+    fastify.put('/users/:id',{preHandler:[authenticate]},userController.updateUser);
+    fastify.patch('/users/:id',{preHandler:[authenticate]},userController.updateUser);
+    fastify.delete('/users/:id',{preHandler:[authenticate]},userController.deleteUser);
 }
 
 module.exports=userRoutes
