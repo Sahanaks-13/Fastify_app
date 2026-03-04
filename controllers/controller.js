@@ -8,4 +8,9 @@ async function getUserById(request,reply){
    const user=await userService.getUserById(request.server.db,id)
    return user;
 }
-module.exports={getUsers,getUserById}
+async function createUser(request,reply){
+   const {name}=request.body;
+   const user=await userService.createUser(request.server.db,name);
+   return user;
+}
+module.exports={getUsers,getUserById,createUser}
