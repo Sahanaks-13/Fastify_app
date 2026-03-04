@@ -6,6 +6,9 @@ async function getUsers(request,reply){
 async function getUserById(request,reply){
    const {id}=request.params;
    const user=await userService.getUserById(request.server.db,id)
+   if(!user){
+      return {message:"Invalid userId"}
+   }
    return user;
 }
 async function createUser(request,reply){
