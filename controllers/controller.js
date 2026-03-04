@@ -18,9 +18,14 @@ async function createUser(request,reply){
 }
 async function updateUser(request,reply){
    const {id}=request.params
-   const {name}=request.body;
-   const user=await userService.updateUser(request.server.db,id,name);
+   const {name,email,age}=request.body;
+   const user=await userService.updateUser(request.server.db,id,name,email,age);
    return user;
+}
+async function updateUserPartially(request,reply){
+      const {id}=request.params
+      const user=await userService.updateUserPartially(request.server.db,id,request.body);
+      return user;
 }
 async function deleteUser(request,reply){
    const {id}=request.params
@@ -28,4 +33,4 @@ async function deleteUser(request,reply){
    return user;
 }
 
-module.exports={getUsers,getUserById,createUser,updateUser,deleteUser}
+module.exports={getUsers,getUserById,createUser,updateUser,updateUserPartially,deleteUser}

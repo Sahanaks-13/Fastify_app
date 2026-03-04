@@ -11,8 +11,12 @@ async function createUser(db,name){
    const result=await db`Insert into users(name) values(${name}) returning *`
    return result[0];
 }
-async function updateUser(db,id,name){
-   const result =await db`Update users set name=(${name}) where id=(${id}) returning *`
+async function updateUser(db,id,name,email,age){
+   const result =await db`Update users set name=(${name}),age=(${age}),email=(${email}) where id=(${id}) returning *`
+   return result[0];
+}
+async function updateUserPartially(db,id,data){
+   const result =await db`Update users set ${db(data)} where id=(${id}) returning *`
    return result[0];
 }
 async function deleteUser(db,id){
@@ -20,4 +24,4 @@ async function deleteUser(db,id){
    return {message:"User deleted succesfully"};
 }
 
-module.exports={getAllUsers,getUserById,createUser,updateUser,deleteUser};
+module.exports={getAllUsers,getUserById,createUser,updateUser,updateUserPartially,deleteUser};
