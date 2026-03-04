@@ -4,7 +4,7 @@ async function userRoutes(fastify,options){
     fastify.get('/users/:id',userController.getUserById);
     fastify.post('/users',userController.createUser);
     fastify.put('/users/:id',userController.updateUser);
-    fastify.patch('/users/:id',userController.updateUserPartially);
+    fastify.patch('/users/:id',userController.updateUser);
     fastify.delete('/users/:id',userController.deleteUser);
 }
 
