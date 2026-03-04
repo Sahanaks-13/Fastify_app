@@ -20,4 +20,4 @@ async function deleteUser(db,id){
    return {message:"User deleted succesfully"};
 }
 
-module.exports={getAllUsers,getUserById,createUser,updateUser,updateUserPartially,deleteUser};
+module.exports={getAllUsers,getUserById,createUser,updateUser,deleteUser};
