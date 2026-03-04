@@ -12,4 +12,8 @@ async function createUser(db,name){
    );
    return result.rows[0];
 }
-module.exports={getAllUsers,getUserById,createUser};
+async function updateUser(db,id,name){
+   const result =await db.query("Update users set name=$1 where id=$2 returning *",[name,id]);
+   return result.rows[0];
+}
+module.exports={getAllUsers,getUserById,createUser,updateUser};

@@ -13,4 +13,10 @@ async function createUser(request,reply){
    const user=await userService.createUser(request.server.db,name);
    return user;
 }
-module.exports={getUsers,getUserById,createUser}
+async function updateUser(request,reply){
+   const {id}=request.params
+   const {name}=request.body;
+   const user=await userService.updateUser(request.server.db,id,name);
+   return user;
+}
+module.exports={getUsers,getUserById,createUser,updateUser}
