@@ -16,4 +16,8 @@ async function updateUser(db,id,name){
    const result =await db.query("Update users set name=$1 where id=$2 returning *",[name,id]);
    return result.rows[0];
 }
-module.exports={getAllUsers,getUserById,createUser,updateUser};
+async function deleteUser(db,id){
+   const result=await db.query("Delete from users where id=$1",[id]);
+   return {message:"User deleted succesfully"};
+}
+module.exports={getAllUsers,getUserById,createUser,updateUser,deleteUser};

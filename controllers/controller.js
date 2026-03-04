@@ -19,4 +19,9 @@ async function updateUser(request,reply){
    const user=await userService.updateUser(request.server.db,id,name);
    return user;
 }
-module.exports={getUsers,getUserById,createUser,updateUser}
+async function deleteUser(request,reply){
+   const {id}=request.params
+   const user=await userService.deleteUser(request.server.db,id);
+   return user;
+}
+module.exports={getUsers,getUserById,createUser,updateUser,deleteUser}
