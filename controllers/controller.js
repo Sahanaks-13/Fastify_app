@@ -24,4 +24,5 @@ async function deleteUser(request,reply){
    const user=await userService.deleteUser(request.server.db,id);
    return user;
 }
+
 module.exports={getUsers,getUserById,createUser,updateUser,deleteUser}

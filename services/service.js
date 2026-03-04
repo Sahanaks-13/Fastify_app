@@ -20,4 +20,5 @@ async function deleteUser(db,id){
    const result=await db.query("Delete from users where id=$1",[id]);
    return {message:"User deleted succesfully"};
 }
+
 module.exports={getAllUsers,getUserById,createUser,updateUser,deleteUser};
