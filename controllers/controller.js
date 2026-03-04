@@ -3,4 +3,9 @@ async function getUsers(request,reply){
    const users=await userService.getAllUsers(request.server.db)
    return users
 }
-module.exports={getUsers}
+async function getUserById(request,reply){
+   const {id}=request.params;
+   const user=await userService.getUserById(request.server.db,id)
+   return user;
+}
+module.exports={getUsers,getUserById}
