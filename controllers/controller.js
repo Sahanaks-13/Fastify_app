@@ -57,12 +57,29 @@ async function login(request, reply) {
    if (!validPassword) {
       return reply.code(401).send({ message: "Invalid password" });
    }
-   const token = request.server.jwt.sign({
+   const accessToken = request.server.jwt.sign({
       id: user.id,
       email: user.email
    },{
       expiresIn: process.env.JWT_EXPIRES
    });
-   return { token };
+   const refreshToken = request.server.jwt.sign(
+      { id: user.id },
+      { expiresIn: '7d' }
+   );
+   return { accessToken, refreshToken};
 }
-module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser, register, login }
+async function refreshToken(request, reply) {
+   const { refreshToken } = request.body;
+   try {
+      const decoded = request.server.jwt.verify(refreshToken);
+      const accessToken = request.server.jwt.sign(
+         { id: decoded.id },
+         { expiresIn: process.env.JWT_EXPIRES }
+      );
+      return { accessToken };
+   } catch (err) {
+      return reply.code(401).send({ message: "Invalid refresh token" });
+   }
+}
+module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser, register, login, refreshToken }
