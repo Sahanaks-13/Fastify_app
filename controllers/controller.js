@@ -60,6 +60,8 @@ async function login(request, reply) {
    const token = request.server.jwt.sign({
       id: user.id,
       email: user.email
+   },{
+      expiresIn: process.env.JWT_EXPIRES
    });
    return { token };
 }
