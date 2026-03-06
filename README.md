@@ -8,20 +8,20 @@ The application is fully containerized using Docker and includes PostgreSQL as a
 
 fastify-app
 │
-|-- app.js
-|-- Dockerfile
-|-- docker-compose.yml
-|--.env
-|-- plugins
-│   |-- db.js
-|-- routes
-│   |-- router.js
-|-- controllers
-│   |-- controller.js
-|-- services
-│   |-- service.js
-|-- middleware
-│   |-- authenticate.js
+├── app.js
+├── Dockerfile
+├── docker-compose.yml
+├── .env
+├── plugins
+│   └── db.js
+├── routes
+│   └── router.js
+├── controllers
+│   └── controller.js
+├── services
+│   └── service.js
+├── middleware
+│   └── authenticate.js
 
 ## Running with Docker
 
